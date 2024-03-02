@@ -22,7 +22,7 @@ public class ClientService {
 
     public Client loginClient(String userName) {
         System.out.print("loginClient");
-        return clientDao.findByUsername(userName);
+        return (Client) clientDao.findAll();
     }
 
     public List<Client> getAllClient() {
