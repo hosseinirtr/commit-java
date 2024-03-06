@@ -3,6 +3,7 @@ package com.h2.entity;
 //import javax.persistence.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -19,15 +20,14 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "CLIENT_ID")
-    int USERID;
-    @Column(name = "CLIENT_NAME")
-    String USERNAME;
+    int userId;
+    @Column(name = "CLIENT_USERNAME", unique = true)
+    @NotNull(message = "Username is required")
+    String userName;
     @Column(name = "CLIENT_PASSWORD")
-    String PASSWORD;
+    String password;
     @Column(name = "CLIENT_EMAIL")
-    String EMAIL;
+    String email;
     @Column(name = "CLIENT_DATE_JOINED")
-    LocalDateTime DATEJOINED = LocalDateTime.now();
-
-
+    LocalDateTime dateJoined = LocalDateTime.now();
 }
