@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
+@RequestMapping("/api/post")
 public class PostController {
     private final PostService postService;
 
@@ -29,10 +30,10 @@ public class PostController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping(value = "/getAllPost")
+    @GetMapping(value = "/getAllPost")
     public ResponseEntity<List<Post>> getAllPost() {
         List<Post> allPost = postService.getAllPost();
-        return null;
+        return ResponseEntity.ok(allPost);
     }
 
     @PostMapping(value = "/getPostById")

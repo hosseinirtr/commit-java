@@ -5,12 +5,11 @@ import com.h2.services.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/client")
 public class ClientController {
     private final ClientService clientService;
 
@@ -21,11 +20,12 @@ public class ClientController {
         return new ResponseEntity<>(clientId, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/find")
-    public ResponseEntity<Integer> findClient(@RequestBody String client) {
+    @GetMapping(value = "/find")
+    public ResponseEntity<Client> findClient(@RequestParam String client) {
+        System.out.println("client"+client);
         Client savedClient = clientService.loginClient(client);
-        int clientId = savedClient.getUserId();
-        return new ResponseEntity<>(clientId, HttpStatus.OK);
+
+        return new ResponseEntity<>(savedClient, HttpStatus.OK);
     }
 
 
