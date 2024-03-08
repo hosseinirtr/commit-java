@@ -1,6 +1,7 @@
 package com.h2.controller;
 
 import com.h2.entity.Post;
+import com.h2.exceptions.PostNoFoundException;
 import com.h2.services.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +34,10 @@ public class PostController {
     @GetMapping(value = "/getAllPost")
     public ResponseEntity<List<Post>> getAllPost() {
         List<Post> allPost = postService.getAllPost();
+        System.out.println(allPost.isEmpty());
+        if(allPost.isEmpty()){
+            throw new PostNoFoundException("No post created yet!");
+        }
         return ResponseEntity.ok(allPost);
     }
 

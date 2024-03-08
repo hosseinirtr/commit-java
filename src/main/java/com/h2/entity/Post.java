@@ -1,4 +1,4 @@
-package com.h2.entity;
+    package com.h2.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
